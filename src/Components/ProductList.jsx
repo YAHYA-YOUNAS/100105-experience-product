@@ -114,9 +114,38 @@ const ProductList = () => {
       </div>
       <h1 className="pl-4 sm:ml-40 text-3xl font-bold my-4">Products List </h1>
       <div className="container  my-4 mx-auto overflow-hidden bg-white">
-        <ul className="flex flex-wrap   flex-col sm:flex-row">
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  {data.map((data, index) => (
+    <li
+    style={{
+      boxShadow:
+        'rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset',
+    }}
+      className="my-2 py-1 mx-3"
+      key={index}
+    >
+      <div className="rounded-lg">
+        <Card
+          productName={productData[index].productName}
+          productNumber={productData[index].productNumber}
+        />
+      </div>
+      <div className="mt-4">
+        <GraphChat data={data} options={options} />
+      </div>
+    </li>
+  ))}
+</ul>
+        {/* <ul className="flex flex-wrap gap-4 flex-col sm:flex-row">
           {data.map((data, index) => (
-            <li className="w-full  border shadow-xl my-2   border-slate-100   sm:w-1/2  p-[10px]" key={index}>
+            <li
+              style={{
+                boxShadow:
+                  "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
+              }}
+              className="w-full   sm:w-1/2  "
+              key={index}
+            >
               <div className="rounded-lg ">
                 <Card
                   productName={productData[index].productName}
@@ -128,8 +157,7 @@ const ProductList = () => {
               </div>
             </li>
           ))}
-        </ul>
-        {/* <div className="border border-gray-200 h-px mt-2"></div> */}
+        </ul> */}
       </div>
     </div>
   );
