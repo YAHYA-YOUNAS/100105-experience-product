@@ -3,7 +3,6 @@ import axios from "axios";
 import Card from "./Card";
 import GraphChart from "./GraphChart";
 
-
 const Legalzard = () => {
   const productData = {
     productName: "LEGALZARD",
@@ -11,6 +10,7 @@ const Legalzard = () => {
   };
 
   const [data, setData] = useState(null); // Initialize data as null
+  const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +49,8 @@ const Legalzard = () => {
         setData(graphData); // Update the state with the fetched data
       } catch (error) {
         console.error("Error occurred while fetching data:", error);
+      } finally {
+        setIsLoading(false); // Set isLoading to false whether fetching succeeds or fails
       }
     };
 
@@ -67,38 +69,44 @@ const Legalzard = () => {
         stepSize: 10,
       },
     },
-  }; 
+  };
 
   return (
-    <div className="bg-[#F4F4F4] h-full">
-      <div className="flex justify-center overflow-hidden h-[150px] px-28 sm:px-28 bg-[#131A26]  py-3">
+    <div className="bg-white h-full">
+      <div className="flex justify-center overflow-hidden h-[10rem]  bg-[#131A26] py-3">
         <img
           className="bg-[#131A26]"
           src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
           alt=""
         />
       </div>
-      <h1 className="pl-4 sm:ml-40 text-3xl font-bold my-4">Products List</h1>
-      <div className="container my-4 mx-auto overflow-hidden bg-white">
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <li
-            style={{
-              boxShadow:
-                "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
-            }}
-            className="my-2 py-1 mx-3"
-          >
-            <div className="rounded-lg">
-              <Card
-                productName={productData.productName}
-                productNumber={productData.productNumber}
-              />
-            </div>
-            <div className="mt-4">
-              <GraphChart data={data} options={options} />
-            </div>
-          </li>
-        </ul>
+
+      <div className="pl-4 md:ml-10 w-[80%]  font-bold my-4">
+        <div className="rounded-lg  ">
+          <Card
+            productName={productData.productName}
+            productNumber={productData.productNumber}
+          />
+        </div>
+      </div>
+      <div className="container my-4 ml-10 md:ml-10 bg-white">
+        {isLoading ? (
+          "Loading ..."
+        ) : (
+          <ul className=" w-4/5 container px-0 ">
+            <li
+              style={{
+                boxShadow:
+                  "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+              }}
+              className="my-2 py-1 "
+            >
+              <div className="mt-4">
+                <GraphChart data={data} options={options} />
+              </div>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );
