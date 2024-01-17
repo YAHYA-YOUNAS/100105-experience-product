@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "./Card";
-import GraphChart from "./GraphChart";
+import Card from "../Card";
+import GraphChart from "../GraphChart";
 
-const SamanthaEvaluator = () => {
+const FetchWorldPriceIndicator = () => {
   const productData = {
-    productName: "SAMANTA CONTENT EVALUATOR",
-    productNumber: "UXLIVINGLAB001",
+    productName: "WORLD PRICE INDICATOR",
+    productNumber: "UXLIVINGLAB002",
   };
 
   const [data, setData] = useState(null); // Initialize data as null
@@ -71,8 +71,6 @@ const SamanthaEvaluator = () => {
     },
   };
 
- 
-
   return (
     <div className="bg-white h-full">
       <div className="flex justify-center overflow-hidden h-[10rem]  bg-[#131A26] py-3">
@@ -91,11 +89,11 @@ const SamanthaEvaluator = () => {
           />
         </div>
       </div>
-      <div className=" my-4 ml-10 lg:ml-[30rem] bg-white">
+      <div className="container my-4 ml-20 md:ml-[30rem] bg-white">
         {isLoading ? (
           "Loading ..."
         ) : (
-          <ul className=" w-4/5   px-0 ">
+          <ul className=" w-4/5 container px-0 ">
             <li
               style={{
                 boxShadow:
@@ -114,4 +112,4 @@ const SamanthaEvaluator = () => {
   );
 };
 
-export default SamanthaEvaluator;
+export default FetchWorldPriceIndicator;

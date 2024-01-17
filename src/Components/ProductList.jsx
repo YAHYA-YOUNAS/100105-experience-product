@@ -24,7 +24,7 @@ const ProductList = () => {
       productNumber: "UXLIVINGLAB004",
     },
     {
-      productName: "WEBSITE CRAWL",
+      productName: "WEBSITE CRAWLER",
       productNumber: "UXLIVINGLAB005",
     },
     {
