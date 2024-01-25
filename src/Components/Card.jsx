@@ -1,7 +1,5 @@
-import React from "react";
-import { FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-
+//eslint-disable-next-line
 const Card = ({ productName, productNumber }) => {
   return (
     <div className=" ">
@@ -9,13 +7,18 @@ const Card = ({ productName, productNumber }) => {
         <p className="md:text-md   justify-center text-sm font-bold flex  ">
           {" "}
           <Link to={`/product/${encodeURIComponent(productNumber)}`}>
-            <button className=" mx-4 md:mx-6 text-lg sm:text-2xl ">{productName}</button>
+            <button className=" mx-4 md:mx-6 text-lg sm:text-2xl ">
+              {productName}
+            </button>
           </Link>{" "}
           <span className="  text-[#68779E] mt-[8px]">
-            <FaArrowRight />
+            {/* <FontAwesomeIcon icon={faCoffee} /> */}
           </span>{" "}
           <span className="text-[#68779E]  mt-1 ml-2"> | </span>
-          <span className=" text-lg sm:text-2xl font-bold  ml-2 "> {productNumber} </span>
+          <span className=" text-lg sm:text-2xl font-bold  ml-2 ">
+            {" "}
+            {productNumber}{" "}
+          </span>
         </p>
         {/* <div className="mr-8 text-2xl text-[#df484a]">{direction}</div> */}
       </div>

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Card from "../Card";
 import GraphChart from "../GraphChart";
+import { ChevronDown } from "react-feather";
 
 const FetchWebsiteCrawler = () => {
   const productData = {
@@ -12,6 +13,24 @@ const FetchWebsiteCrawler = () => {
   const [data, setData] = useState(null); // Initialize data as null
   const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [day, setDay] = useState("seven_days");
+  const dropdownRef = useRef(null);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+  const closeDropdown = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", closeDropdown);
+
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       const payload = {
@@ -72,28 +91,20 @@ const FetchWebsiteCrawler = () => {
   };
 
   return (
-    <div className="bg-white h-full">
-      <div className="flex justify-center overflow-hidden h-[10rem]  bg-[#131A26] py-3">
-        <img
-          className="bg-[#131A26]"
-          src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
-          alt=""
-        />
-      </div>  
-
-      <div className="pl-4 md:ml-[30rem] w-[80%]  font-bold my-4">
-        <div className="rounded-lg  ">
+    <div className="bg-white h-full w-full">
+      <div className=" w-[100%]  font-bold my-4 md:block sm:hidden">
+        <div className="rounded-lg w-[100%] ">
           <Card
             productName={productData.productName}
             productNumber={productData.productNumber}
           />
         </div>
       </div>
-      <div className="container my-4 ml-20 md:ml-[30rem] bg-white">
+      <div className=" my-3 bg-white md:flex md:flex-row md:gap-5 sm:items-center sm:flex sm:flex-col-reverse">
         {isLoading ? (
           "Loading ..."
         ) : (
-          <ul className=" w-4/5 container px-0 ">
+          <ul className=" w-4/5   px-0 ">
             <li
               style={{
                 boxShadow:
@@ -101,12 +112,76 @@ const FetchWebsiteCrawler = () => {
               }}
               className="my-2 py-1 "
             >
-              <div className="mt-4">
+              <div className="mt-2">
                 <GraphChart data={data} options={options} />
               </div>
             </li>
+            <li className="flex justify-center font-thin font-serif items-center w-full mx-auto h-10 bg-white text-green-700 text-xl rounded-md border border-solid border-1 border-green-300 hover:border-green-400 mt-5">
+              Count:
+              {data?.datasets[0]?.data?.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue;
+              }, 0)}
+            </li>
           </ul>
         )}
+        <div
+          className="relative inline-block h-11 md:ml-0 sm:self-start sm:ml-16"
+          ref={dropdownRef}
+        >
+          <button
+            onClick={toggleDropdown}
+            className=" flex border border-solid border-green-500 text-green-600 hover:border-green-900 px-4 py-2 rounded-lg text-md focus:outline-none"
+          >
+            {day === "seven_days" && <span>7 days</span>}
+            {day === "one_day" && <span>1 day</span>}
+            {day === "thirty_day" && <span>30 days</span>}
+            <span className="ml-1">
+              <ChevronDown />
+            </span>
+          </button>
+
+          {isDropdownOpen && (
+            <div className="absolute mt-2 bg-white text-gray-800 border rounded-md shadow-lg">
+              <ul className="py-2">
+                <li className="px-4 py-2 hover:bg-green-50">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+
+                      setDay("seven_days");
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    7 days
+                  </button>
+                </li>
+                <li className="px-4 py-2 hover:bg-green-50">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setDay("thirty_day");
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    30 days
+                  </button>
+                </li>
+                <li className="px-4 py-2 hover:bg-green-50">
+                  <button
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setDay("one_day");
+                      setIsDropdownOpen(false);
+                    }}
+                  >
+                    1 day
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

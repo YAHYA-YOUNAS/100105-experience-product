@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import GraphChart from "./GraphChart";
@@ -79,7 +79,7 @@ const FetchSamantha = () => {
           src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
           alt=""
         />
-      </div>  
+      </div>
 
       <div className="pl-4 md:ml-10 w-[80%]  font-bold my-4">
         <div className="rounded-lg  ">

@@ -1,152 +1,242 @@
-import React, { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import SamanthaEvaluator from "./SamanthaEvaluator";
+import { ChevronDown } from "react-feather";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [sidebarVisible, setSidebarVisible] = useState(true);
-
-  const handleToggleSidebar = () => {
-    setSidebarVisible(!sidebarVisible);
+  const [isDropdownOpen, setIsDropdownOpen] = useState("");
+  const [report, setReport] = useState("SamanthaEvaluator");
+  const dropdownRef = useRef(null);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
-  console.log("sidebarVisible", sidebarVisible);
+  const closeDropdown = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("click", closeDropdown);
 
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, []);
   return (
-    <div className="overflow-hidden">
-      <div className="flex bg-gray-200 justify-between ">
-        <button
-          data-drawer-target="default-sidebar"
-          data-drawer-toggle="default-sidebar"
-          aria-controls="default-sidebar"
-          type="button"
-          className="items-center p-2 mt-2 ms-3 text-md text-gray-500 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          onClick={handleToggleSidebar}
-        >
-          <span className="sr-only">Open sidebar</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clipRule="evenodd"
-              fillRule="evenodd"
-              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-            ></path>
-          </svg>
-        </button>
+    <div className="overflow-hidden md:flex sm:flex md:flex-row  sm:flex-col  w-full  md:gap-[8%]">
+      <aside
+        id="default-sidebar"
+        aria-label="Sidebar"
+        className="md:flex-2 md:w-1/3"
+      >
+        <div className="h-full  px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800  ">
+          <ul className="space-y-4 font-medium md:shadow-lg sm:shadow-sm">
+            <li className="flex justify-center border border-solid border-green-600 py-3">
+              Report
+            </li>
+            <li className="md:flex  md:justify-between md:h-full sm:w-1/16">
+              <a className="flex items-center ps-2.5 md:mb-5 sm:mb-2">
+                <img
+                  src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
+                  className="md:h-full md:w-[50%] mx-auto sm:w-[10%] rounded-md border border-gray-400"
+                  alt="Flowbite Logo"
+                />
+              </a>
 
-        {/* <div className="flex justify-center overflow-hidden h-[10rem] bg-[#131A26] py-3">
-    <img
-      className="bg-[#131A26]"
-      src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
-      alt=""
-    />
-  </div> */}
-      </div>
-
-      {sidebarVisible && (
-        <aside
-          id="default-sidebar"
-          className={`fixed top-0 left-0 z-40 h-screen transition-transform ${
-            sidebarVisible
-              ? "translate-x-0  "
-              : "-translate-x-full w-0 sm:translate-x-0"
-          }`}
-          aria-label="Sidebar"
-        >
-          <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <ul className="space-y-4 font-medium">
-              <li className="flex justify-between">
-                <a className="flex items-center ps-2.5 mb-5">
-                  <img
-                    src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
-                    className="h-6 me-2 sm:h-12 rounded-3xl border border-gray-400"
-                    alt="Flowbite Logo"
-                  />
-                  <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                    Dowell
-                  </span>
-                </a>
-
-                <button
+              {/* <button
                   className="mt-1 mr-8 sm:mr-0 sm:mt-2 h-8 w-8   rounded-full bg-red-500 flex items-center justify-center"
                   onClick={handleToggleSidebar}
                 >
                   <span className="text-white">X</span>
-                </button>
-              </li>
+                </button> */}
+            </li>
 
-              {sidebarVisible && (
-                <div className="ml-4 space-y-8 text-xl font-medium">
-                  <li className="">
-                    <Link
-                      to="/samantha"
-                      className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                      <span className="ms-3">SAMANTA CONTENT EVALUATOR</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/world-price"
-                      className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                      <span className="flex-1 ms-3 whitespace-nowrap">
-                        WORLD PRICE INDICATOR
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/legalzard"
-                      className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                      <span className="flex-1 ms-3 whitespace-nowrap">
-                        LEGALZARD
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/location-search"
-                      className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                      <span className="flex-1 ms-3 whitespace-nowrap">
-                        LOCATION SPECIFIC SEARCH
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/website-crawler"
-                      className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                      <span className="flex-1 ms-3 whitespace-nowrap">
-                        WEBSITE CRAWLER
-                      </span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/search-livinglab"
-                      className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-                    >
-                      <span className="flex-1 ms-3 whitespace-nowrap">
-                        SEARCH IN LIVINGLAB
-                      </span>
-                    </Link>
-                  </li>
+            <div className="md:ml-4 space-y-6 text-xl font-medium pb-6 md:block sm:hidden">
+              <li className="">
+                <Link
+                  to="/samantha"
+                  className="flex items-center p-2 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
+                >
+                  <span className="ms-3 text-sm">
+                    SAMANTA CONTENT EVALUATOR
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/world-price"
+                  className="flex items-center p-2 rounded-lg dark:text-white dark:hover:bg-gray-700 group border border-solid border-green-200  hover:bg-green-600 hover:text-white mr-3"
+                >
+                  <span className="flex-1 ms-3 whitespace-nowrap text-sm">
+                    WORLD PRICE INDICATOR
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/legalzard"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
+                >
+                  <span className="flex-1 ms-3 whitespace-nowrap text-sm">
+                    LEGALZARD
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/location-search"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group  border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
+                >
+                  <span className="flex-1 ms-3 whitespace-nowrap text-sm">
+                    LOCATION SPECIFIC SEARCH
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/website-crawler"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
+                >
+                  <span className="flex-1 ms-3 whitespace-nowrap text-sm">
+                    WEBSITE CRAWLER
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/search-livinglab"
+                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3 mb-4"
+                >
+                  <span className="flex-1 ms-3 whitespace-nowrap text-sm">
+                    SEARCH IN LIVINGLAB
+                  </span>
+                </Link>
+              </li>
+            </div>
+            {/* mobile -- version */}
+
+            <div
+              className="absolute inline-block w-[96%] md:hidden mx-auto sm:block"
+              ref={dropdownRef}
+            >
+              <button
+                onClick={toggleDropdown}
+                className="flex  hover:border-green-900 px-4 py-2 text-md focus:outline-none items-center justify-between p-2 w-full mx-auto mb-5 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
+              >
+                {report === "SamanthaEvaluator" && (
+                  <span> SAMANTA CONTENT EVALUATOR</span>
+                )}
+                {report === "Legalzard" && <span>LEGALZARD</span>}
+                {report === "SearchLivingLab" && <span>Search Living Lab</span>}
+                {report === "LocationSearch" && (
+                  <span>LOCATION SPECIFIC SEARCH</span>
+                )}
+                {report === "WorldPrice" && <span> WORLD PRICE INDICATOR</span>}
+                {report === "website-crawler" && <span> WEBSITE CRAWLER</span>}
+                {report === "search-livinglab" && (
+                  <span> SEARCH IN LIVINGLAB</span>
+                )}
+
+                <span className="ml-1">
+                  <ChevronDown />
+                </span>
+              </button>
+
+              {isDropdownOpen && (
+                <div className="absolute w-full bg-white text-gray-800 border rounded-md shadow-lg p-1 z-50">
+                  <ul className="py-1">
+                    <li>
+                      <Link
+                        to="/world-price"
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setReport("WorldPrice");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          WORLD PRICE INDICATOR
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/legalzard"
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setReport("SamanthaEvaluator");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          LEGALZARD
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/location-search"
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setReport("LocationSearch");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          LOCATION SPECIFIC SEARCH
+                        </button>
+                      </Link>
+
+                      <Link
+                        to="/website-crawler"
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setReport("website-crawler");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          WEBSITE CRAWLER
+                        </button>
+                      </Link>
+                      <Link
+                        to="/search-livinglab"
+                        className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setReport("website-crawler");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          WEBSITE CRAWLER
+                        </button>
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               )}
-            </ul>
-          </div>
-        </aside>
-      )}
+            </div>
+          </ul>
+        </div>
+      </aside>
 
-      <div className={`flex-1 ml-0  md:ml-${sidebarVisible ? '0' : '0'} `}>
+      <div className={`flex-2 w-full mt-16`}>
         <SamanthaEvaluator />
       </div>
     </div>
