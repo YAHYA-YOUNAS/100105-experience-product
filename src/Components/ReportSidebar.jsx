@@ -147,6 +147,24 @@ const ReportSidebar = ({ reportname, children }) => {
                   <ul className="py-1">
                     <li>
                       <Link
+                        to="/"
+                        className="flex my-1 mb-2 items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white"
+                      >
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setReport("SamanthaEvaluator");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          SAMANTA CONTENT EVALUATOR
+                        </button>
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
                         to="/world-price"
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white"
                       >
@@ -171,7 +189,7 @@ const ReportSidebar = ({ reportname, children }) => {
                           onClick={(e) => {
                             e.preventDefault();
 
-                            setReport("SamanthaEvaluator");
+                            setReport("Legalzard");
                             setIsDropdownOpen(false);
                           }}
                         >
