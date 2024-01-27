@@ -1,11 +1,11 @@
 
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import App from './App.jsx'
 import Report from "./Components/Report";
 
 
 const basePath =  '/100105-experience-product'
-const Router = createBrowserRouter([{
+const Router = createHashRouter([{
     path: basePath,
     element: <App />,
     children: [
