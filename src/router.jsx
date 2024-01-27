@@ -18,7 +18,7 @@ const Router = createBrowserRouter([{
                     />,
         },
         {
-            path: `${basePath}/legalzard`,
+            path: `${basePath}/legalzard/`,
             element: <Report
                         productName={"LEGALZARD"}
                         reportName={"Legalzard"}
@@ -26,7 +26,7 @@ const Router = createBrowserRouter([{
                     />,
         },
         {
-            path: `${basePath}/website-crawler`,
+            path: `${basePath}/website-crawler/`,
             element: <Report
                         productName={"WEBSITE CRAWLER"}
                         productNumber={"UXLIVINGLAB005"}
@@ -34,7 +34,7 @@ const Router = createBrowserRouter([{
                     />,
         },
         {
-            path: `${basePath}/location-search`,
+            path: `${basePath}/location-search/`,
             element: <Report
                         productName={"LOCATION SPECIFIC SEARCH"}
                         productNumber={"UXLIVINGLAB004"}
@@ -42,7 +42,7 @@ const Router = createBrowserRouter([{
                     />,
         },
         {
-            path: `${basePath}/world-price`,
+            path: `${basePath}/world-price/`,
             element: <Report
                         productName={"WORLD PRICE INDICATOR"}
                         productNumber={"UXLIVINGLAB002"}
@@ -50,7 +50,7 @@ const Router = createBrowserRouter([{
                     />,
         },
         {
-            path: `${basePath}/search-livinglab`,
+            path: `${basePath}/search-livinglab/`,
             element: <Report
                         productName={"SEARCH LIVING LAB"}
                         productNumber={"UXLIVINGLAB006"}
