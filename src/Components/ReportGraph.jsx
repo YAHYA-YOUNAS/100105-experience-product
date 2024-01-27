@@ -90,7 +90,7 @@ const ReportGraph = ({ productName, reportName, productNumber }) => {
   console.log("product name=", productName);
   console.log("product number=", productNumber);
   return (
-    <ReportSidebar reportname={reportName}>
+    <ReportSidebar reportname={reportName} basePath={'/100105-experience-product'}>
       <div className="bg-white h-full w-full">
         <div className=" w-[100%]  font-bold my-4 md:block sm:hidden">
           <div className="rounded-lg w-[100%] ">
