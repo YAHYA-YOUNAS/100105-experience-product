@@ -2,6 +2,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from './App.jsx'
 import Report from "./Components/Report";
+import Legalzard from "./pages/legalzard.jsx";
 
 
 const basePath =  '/100105-experience-product'
@@ -19,11 +20,7 @@ const Router = createBrowserRouter([{
         },
         {
             path: `${basePath}/legalzard/`,
-            element: <Report
-                        productName={"LEGALZARD"}
-                        reportName={"Legalzard"}
-                        productNumber={"UXLIVINGLAB003"}
-                    />,
+            element: <Legalzard />
         },
         {
             path: `${basePath}/website-crawler/`,

@@ -23,6 +23,10 @@ const ReportSidebar = ({ reportname, children, basePath }) => {
     };
   }, []);
   return (
+
+    <>
+      
+    
     <div className="overflow-hidden md:flex sm:flex md:flex-row  sm:flex-col  w-full  md:gap-[8%]">
       <aside
         id="default-sidebar"
@@ -255,6 +259,7 @@ const ReportSidebar = ({ reportname, children, basePath }) => {
 
       <div className={`flex-2 w-full mt-16`}>{children}</div>
     </div>
+    </>
   );
 };
 

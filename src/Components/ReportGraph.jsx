@@ -2,15 +2,24 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import GraphChart from "./GraphChart";
-import { ChevronDown } from "react-feather";
-import ReportSidebar from "./ReportSidebar";
+import { LuChevronDown, LuExternalLink } from "react-icons/lu";
+import { format } from 'date-fns';
+
+
+// import ReportSidebar from "./ReportSidebar";
 //eslint-disable-next-line
-const ReportGraph = ({ productName, reportName, productNumber }) => {
+const ReportGraph = ({ productName, reportName, productNumber, productUrl }) => {
   const [data, setData] = useState(null); // Initialize data as null
   const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
+  const [ error, setError ] = useState({
+    isError: false,
+    message: ""
+  })
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [day, setDay] = useState("seven_days");
+  const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'))
+
   const dropdownRef = useRef(null);
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -30,10 +39,11 @@ const ReportGraph = ({ productName, reportName, productNumber }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const payload = {
-        date_type: day,
-        date: "10-01-2024",
-      };
+    const formattedDate = format(date, 'dd-MM-yyyy'); // Format the date as dd-mm-yyyy
+    const payload = {
+      time_period: day,
+      date: formattedDate,
+    };
 
       try {
         const response = await axios.post(
@@ -41,17 +51,19 @@ const ReportGraph = ({ productName, reportName, productNumber }) => {
           { ...payload, product_number: productNumber }
         );
 
-        const responseData = await response.data;
+        const responseData = await response.data.response;
+
+        console.log("Response", responseData)
 
         const graphData = {
           productName: productName,
-          labels: [0, ...responseData.present_dates.map((data) => data.date)],
+          labels: [0, ...responseData.map((data) => data.date)],
           datasets: [
             {
               label: productName,
               data: [
                 0,
-                ...responseData.present_dates.map((data) => data.count),
+                ...responseData.map((data) => data.count),
               ],
               fill: false,
               backgroundColor: "rgba(0, 0, 255, 0.5)",
@@ -65,6 +77,7 @@ const ReportGraph = ({ productName, reportName, productNumber }) => {
 
         setData(graphData); // Update the state with the fetched data
       } catch (error) {
+        setError({isError: true, message: error?.data?.message})
         console.error("Error occurred while fetching data:", error);
       } finally {
         setIsLoading(false); // Set isLoading to false whether fetching succeeds or fails
@@ -72,7 +85,7 @@ const ReportGraph = ({ productName, reportName, productNumber }) => {
     };
 
     fetchData();
-  }, [day, productName, productNumber]);
+  }, [day, date, productName, productNumber]);
 
   useEffect(() => {
     console.log("data", data); // Log the data state when it changes
@@ -90,101 +103,121 @@ const ReportGraph = ({ productName, reportName, productNumber }) => {
   console.log("product name=", productName);
   console.log("product number=", productNumber);
   return (
-    <ReportSidebar reportname={reportName} basePath={'/100105-experience-product'}>
-      <div className="bg-white h-full w-full">
-        <div className=" w-[100%]  font-bold my-4 md:block sm:hidden">
-          <div className="rounded-lg w-[100%] ">
-            <Card productName={productName} productNumber={productNumber} />
-          </div>
-        </div>
-        <div className=" my-3 bg-white md:flex md:flex-row md:gap-5 sm:items-center sm:flex sm:flex-col-reverse">
-          {isLoading ? (
-            "Loading ..."
-          ) : (
-            <ul className=" w-4/5   px-0 ">
-              <li
-                style={{
-                  boxShadow:
-                    "rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset",
+    
+      <div>
+        {/* {!error &&  */}
+            <div>
+              <Card productName={productName} />
+              {/* flex items-center justify-left rounded */}
+             
+              <input 
+                value={date}
+                onChange={(e) => {
+                  setDate(e.target.value)
                 }}
-                className="my-2 py-1 "
+                type="date"
+                className="text-white mr-1 bg-[#005734] hover:bg-[#005734]-800 focus:outline-none font-sm rounded-lg text-sm px-5 py-1 text-center inline-flex items-center"
+              />
+              <div
+                className="relative inline-block h-11 md:ml-0 sm:self-start mr-1"
+                ref={dropdownRef}
               >
-                <div className="mt-2">
-                  <GraphChart data={data} options={options} />
-                </div>
-              </li>
-              <li className="flex justify-center font-thin font-serif items-center w-full mx-auto h-10 bg-white text-green-700 text-xl rounded-md border border-solid border-1 border-green-300 hover:border-green-400 mt-5">
-                Count:
-                {data?.datasets[0]?.data?.reduce(
-                  (accumulator, currentValue) => {
-                    return accumulator + currentValue;
-                  },
-                  0
+                <button
+                  onClick={toggleDropdown}
+                  className="text-white bg-[#005734] hover:bg-[#005734]-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-1 text-center inline-flex items-center"
+                  >
+                  {day === "one_day" && <span>1 day</span>}
+                  {day === "seven_days" && <span>7 days</span>}
+                  {day === "one_month" && <span>30 days</span>}
+                  <span className="ml-1">
+                    <LuChevronDown />
+                  </span>
+                </button>
+
+                {isDropdownOpen && (
+                  <div className="absolute mt-2 bg-white text-gray-800 border rounded-md shadow-lg">
+                    <ul className="py-2">
+                      <li className="px-4 py-2 hover:bg-green-50">
+                        <button
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setDay("one_day");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          1 day
+                        </button>
+                      </li>
+                      <li className="px-4 py-2 hover:bg-green-50">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+
+                            setDay("seven_days");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          7 days
+                        </button>
+                      </li>
+                      <li className="px-4 py-2 hover:bg-green-50">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setDay("one_month");
+                            setIsDropdownOpen(false);
+                          }}
+                        >
+                          30 days
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 )}
-              </li>
-            </ul>
-          )}
-          <div
-            className="relative inline-block h-11 md:ml-0 sm:self-start sm:ml-16"
-            ref={dropdownRef}
-          >
-            <button
-              onClick={toggleDropdown}
-              className=" flex border border-solid border-green-500 text-green-600 hover:border-green-900 px-4 py-2 rounded-lg text-md focus:outline-none"
-            >
-              {day === "seven_days" && <span>7 days</span>}
-              {day === "one_day" && <span>1 day</span>}
-              {day === "thirty_day" && <span>30 days</span>}
-              <span className="ml-1">
-                <ChevronDown />
-              </span>
-            </button>
+              </div>
 
-            {isDropdownOpen && (
-              <div className="absolute mt-2 bg-white text-gray-800 border rounded-md shadow-lg">
-                <ul className="py-2">
-                  <li className="px-4 py-2 hover:bg-green-50">
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
+              <a 
+                href={productUrl}
+                className="cursor-pointer text-white bg-[#005734] hover:bg-[#005734]-800 focus:outline-none font-sm rounded-lg text-sm px-5 py-1 text-center inline-flex items-center"
+                >
+                  Visit
+                  <span className="ml-1">
+                    <LuExternalLink />
+                  </span>
+              </a>
+            </div>
 
-                        setDay("seven_days");
-                        setIsDropdownOpen(false);
-                      }}
-                    >
-                      7 days
-                    </button>
+        
+            <div className="my-3 w-full md:flex md:flex-row md:gap-5 sm:items-center sm:flex sm:flex-col-reverse">
+              {isLoading ? (
+                "Loading ..."
+              ) : (
+                <ul className="w-full">
+                  <li
+                    style={{
+                      boxShadow:"rgba(0, 0, 0, 0.16) 0px 1px 4px",
+                      borderRadius:"10px"
+                    }}
+                    className="my-2 py-5"
+                  >
+                    <GraphChart data={data} options={options} />
                   </li>
-                  <li className="px-4 py-2 hover:bg-green-50">
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setDay("thirty_day");
-                        setIsDropdownOpen(false);
-                      }}
-                    >
-                      30 days
-                    </button>
-                  </li>
-                  <li className="px-4 py-2 hover:bg-green-50">
-                    <button
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setDay("one_day");
-                        setIsDropdownOpen(false);
-                      }}
-                    >
-                      1 day
-                    </button>
+                  <li className="flex justify-center font-thin font-serif items-center w-full mx-auto h-10 bg-white text-green-700 text-xl rounded-md border border-solid border-1 border-green-300 hover:border-green-400 mt-5">
+                    Count:
+                    {data?.datasets[0]?.data?.reduce(
+                      (accumulator, currentValue) => {
+                        return accumulator + currentValue;
+                      },
+                      0
+                    )}
                   </li>
                 </ul>
-              </div>
-            )}
-          </div>
-        </div>
+              )}
+              
+            </div>
       </div>
-    </ReportSidebar>
+    // </ReportSidebar>
   );
 };
 

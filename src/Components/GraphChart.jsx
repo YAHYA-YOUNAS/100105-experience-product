@@ -75,7 +75,7 @@ function GraphChart({ data, graphName }) {
   //eslint-disable-next-line
   //data.datasets[0].borderColor = "red";
   return (
-    <div className="bg-white rounded-xl  px-0 sm:px-5 w-[100%] md:h-[17rem] sm:h-[15rem]">
+    <div className="bg-white rounded-xl px-0 sm:px-5 w-[100%] md:h-[17rem] sm:h-[15rem]">
       <Line data={data} options={options} />
     </div>
   );
