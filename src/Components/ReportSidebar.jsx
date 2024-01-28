@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "react-feather";
 import { Link } from "react-router-dom";
 //eslint-disable-next-line
-const ReportSidebar = ({ reportname, children }) => {
+const ReportSidebar = ({ reportname, children, basePath }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState("");
   const [report, setReport] = useState(reportname);
   const dropdownRef = useRef(null);
@@ -23,6 +23,10 @@ const ReportSidebar = ({ reportname, children }) => {
     };
   }, []);
   return (
+
+    <>
+      
+    
     <div className="overflow-hidden md:flex sm:flex md:flex-row  sm:flex-col  w-full  md:gap-[8%]">
       <aside
         id="default-sidebar"
@@ -54,7 +58,7 @@ const ReportSidebar = ({ reportname, children }) => {
             <div className="md:ml-4 space-y-6 text-xl font-medium pb-6 md:block sm:hidden">
               <li className="">
                 <Link
-                  to="/"
+                  to={`${basePath}/`}
                   className="flex items-center p-2 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
                 >
                   <span className="ms-3 text-sm">
@@ -64,7 +68,7 @@ const ReportSidebar = ({ reportname, children }) => {
               </li>
               <li>
                 <Link
-                  to="/world-price"
+                  to={`${basePath}/world-price/`}
                   className="flex items-center p-2 rounded-lg dark:text-white dark:hover:bg-gray-700 group border border-solid border-green-200  hover:bg-green-600 hover:text-white mr-3"
                 >
                   <span className="flex-1 ms-3 whitespace-nowrap text-sm">
@@ -74,7 +78,7 @@ const ReportSidebar = ({ reportname, children }) => {
               </li>
               <li>
                 <Link
-                  to="/legalzard"
+                  to={`${basePath}/legalzard/`}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
                 >
                   <span className="flex-1 ms-3 whitespace-nowrap text-sm">
@@ -84,7 +88,7 @@ const ReportSidebar = ({ reportname, children }) => {
               </li>
               <li>
                 <Link
-                  to="/location-search"
+                  to={`${basePath}/location-search/`}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group  border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
                 >
                   <span className="flex-1 ms-3 whitespace-nowrap text-sm">
@@ -94,7 +98,7 @@ const ReportSidebar = ({ reportname, children }) => {
               </li>
               <li>
                 <Link
-                  to="/website-crawler"
+                  to={`${basePath}/website-crawler/`}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3"
                 >
                   <span className="flex-1 ms-3 whitespace-nowrap text-sm">
@@ -104,7 +108,7 @@ const ReportSidebar = ({ reportname, children }) => {
               </li>
               <li>
                 <Link
-                  to="/search-livinglab"
+                  to={`${basePath}/search-livinglab/`}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white mr-3 mb-4"
                 >
                   <span className="flex-1 ms-3 whitespace-nowrap text-sm">
@@ -147,7 +151,7 @@ const ReportSidebar = ({ reportname, children }) => {
                   <ul className="py-1">
                     <li>
                       <Link
-                        to="/"
+                        to={`${basePath}/`}
                         className="flex my-1 mb-2 items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white"
                       >
                         <button
@@ -165,7 +169,7 @@ const ReportSidebar = ({ reportname, children }) => {
 
                     <li>
                       <Link
-                        to="/world-price"
+                        to={`${basePath}/world-price/`}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white"
                       >
                         <button
@@ -182,7 +186,7 @@ const ReportSidebar = ({ reportname, children }) => {
                     </li>
                     <li>
                       <Link
-                        to="/legalzard"
+                        to={`${basePath}/legalzard/`}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
                       >
                         <button
@@ -199,7 +203,7 @@ const ReportSidebar = ({ reportname, children }) => {
                     </li>
                     <li>
                       <Link
-                        to="/location-search"
+                        to={`${basePath}/location-search/`}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
                       >
                         <button
@@ -215,7 +219,7 @@ const ReportSidebar = ({ reportname, children }) => {
                       </Link>
 
                       <Link
-                        to="/website-crawler"
+                        to={`${basePath}/website-crawler/`}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
                       >
                         <button
@@ -230,7 +234,7 @@ const ReportSidebar = ({ reportname, children }) => {
                         </button>
                       </Link>
                       <Link
-                        to="/search-livinglab"
+                        to={`${basePath}/search-livinglab/`}
                         className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white  dark:hover:bg-gray-700 group border border-solid border-green-200 hover:bg-green-600 hover:text-white my-3"
                       >
                         <button
@@ -255,6 +259,7 @@ const ReportSidebar = ({ reportname, children }) => {
 
       <div className={`flex-2 w-full mt-16`}>{children}</div>
     </div>
+    </>
   );
 };
 
