@@ -15,6 +15,16 @@ function GraphChart({ data, graphName }) {
         ticks: {
           stepSize: 5,
         },
+        title: {
+          display: true,
+          text: "Count",
+          align: "center",
+          font: {
+            weight: "bold",
+            color: "#005734",
+            size: "17px",
+          },
+        },
         grid: {
           display: false,
         },
@@ -24,12 +34,13 @@ function GraphChart({ data, graphName }) {
           display: false,
         },
         title: {
-          display: false,
-          text: "Time",
+          display: true,
+          text: "Date",
           align: "center",
           font: {
             weight: "bold",
-            color: "black",
+            color: "#005734",
+            size: "17px",
           },
         },
       },
@@ -75,7 +86,7 @@ function GraphChart({ data, graphName }) {
   //eslint-disable-next-line
   //data.datasets[0].borderColor = "red";
   return (
-    <div className="bg-white rounded-xl px-0 sm:px-5 w-[100%] md:h-[17rem] sm:h-[15rem]">
+    <div className="bg-white rounded-xl px-0 sm:px-5 w-[100%] md:h-[14rem] sm:h-[12rem]">
       <Line data={data} options={options} />
     </div>
   );

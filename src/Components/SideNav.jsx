@@ -1,41 +1,41 @@
-import React from 'react'
+import React from "react";
 import { LuAlignLeft, LuHome, LuX } from "react-icons/lu";
 
 import NavItem from "./NavItem";
 
-const basePath = "/100105-experience-product"
+const basePath = "/100105-experience-product";
 const links = [
-    {
-        name: "SAMANTA CONTENT EVALUATOR",
-        icon: <LuHome />,
-        path: `${basePath}/`
-    },
-    {
-        name: "WORLD PRICE INDICATOR",
-        icon: <LuHome />,
-        path: `${basePath}/world-price/`
-    },
-    {
-        name: "LEGALZARD",
-        icon: <LuHome />,
-        path: `${basePath}/legalzard`
-    },
-    {
-        name: "LOCATION SPECIFIC SEARCH",
-        icon: <LuHome />,
-        path: `${basePath}/location-search`
-    },
-    {
-        name: "WEBSITE CRAWLER",
-        icon: <LuHome />,
-        path: `${basePath}/website-crawler`
-    },
-    {
-        name: "SEARCH IN LIVINGLAB",
-        icon: <LuHome />,
-        path: `${basePath}/search-livinglab`
-    }
-]
+  {
+    name: "SAMANTA CONTENT EVALUATOR",
+    icon: <LuHome />,
+    path: `${basePath}/`,
+  },
+  {
+    name: "WORLD PRICE INDICATOR",
+    icon: <LuHome />,
+    path: `${basePath}/world-price/`,
+  },
+  {
+    name: "LEGALZARD",
+    icon: <LuHome />,
+    path: `${basePath}/legalzard`,
+  },
+  {
+    name: "LOCATION SPECIFIC SEARCH",
+    icon: <LuHome />,
+    path: `${basePath}/location-search`,
+  },
+  {
+    name: "WEBSITE CRAWLER",
+    icon: <LuHome />,
+    path: `${basePath}/website-crawler`,
+  },
+  {
+    name: "SEARCH IN LIVINGLAB",
+    icon: <LuHome />,
+    path: `${basePath}/search-livinglab`,
+  },
+];
 
 const SideNav = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -45,42 +45,45 @@ const SideNav = () => {
   };
   return (
     <>
-        <div className='flex justify-between'>
-            <button 
-                onClick={toggleSidebar}
-                className="inline-flex z-40 items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700">
-                <span className="sr-only">Open sidebar</span>
-                { isOpen ?  <LuX size={24}/> : <LuAlignLeft size={24}/> }
-            </button>
-        </div>
-        
+      <div className="flex justify-between">
+        <button
+          onClick={toggleSidebar}
+          className="inline-flex z-40 items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700"
+        >
+          <span className="sr-only">Open sidebar</span>
+          {isOpen ? <LuX size={24} /> : <LuAlignLeft size={24} />}
+        </button>
+      </div>
 
-        <aside 
-            id="default-sidebar" 
-            // className={`fixed top-0 left-0 z-10 h-screen transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}  aria-label="Sidebar"
-            className={`fixed top-0 left-0 z-10 w-64  h-screen transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`}  >
-            <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 light:bg-gray-800">
-                <div href="#" className="mb-7 flex justify-center items-center rounded-lg px-3 py-2 text-slate-900">
-                    <span className="text-base font-semibold">Report</span>
-                </div>
-                <a className="flex items-center ps-2.5 mb-10">
-                    <img
-                        src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
-                        className="md:h-full w-20 mx-auto"
-                        alt="Flowbite Logo"
-                    />
-                </a>
-                
-                <ul className="space-y-2 font-medium">
-                    {links.map(link => (
-                            <li key={link?.name}>
-                                <NavItem 
-                                    name={link?.name}
-                                    path={link?.path}
-                                />
-                            </li>
-                    ))}
-                    {/* <li>
+      <aside
+        id="default-sidebar"
+        // className={`fixed top-0 left-0 z-10 h-screen transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}  aria-label="Sidebar"
+        className={`fixed top-0 left-0 z-20 w-64  h-screen transition-transform ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0`}
+      >
+        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 light:bg-gray-800">
+          <div
+            href="#"
+            className="mb-7 flex justify-center items-center rounded-lg px-3 py-2 text-slate-900"
+          >
+            <span className="text-base font-semibold">Report</span>
+          </div>
+          <a className="flex items-center ps-2.5 mb-10">
+            <img
+              src="https://psp-logos.uptimerobot.com/logos/2021049-1676548510.png"
+              className="md:h-full w-20 mx-auto"
+              alt="Flowbite Logo"
+            />
+          </a>
+
+          <ul className="space-y-2 font-medium">
+            {links.map((link) => (
+              <li key={link?.name}>
+                <NavItem name={link?.name} path={link?.path} />
+              </li>
+            ))}
+            {/* <li>
                         <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z"/>
@@ -90,14 +93,11 @@ const SideNav = () => {
                         <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
                         </a>
                     </li> */}
-                </ul>
-            </div>
-        </aside>
+          </ul>
+        </div>
+      </aside>
     </>
+  );
+};
 
-  )
-}
-
-export default SideNav
-
-
+export default SideNav;
