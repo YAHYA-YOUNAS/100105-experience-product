@@ -218,7 +218,7 @@ const ReportGraph = ({
               <div className="mx-4 text-center w-auto p-2">
                 <p className="font-semibold md:text-3xl sm:text-xl">
                   {countOneDay}{" "}
-                  <span className="md:text-2xl sm:text-sm">%</span>
+                  <span className="text-sm text-gray-500">Count</span>
                 </p>
                 <p className="font-thin text-gray-400 mt-2 text-sm">
                   last one day
@@ -227,7 +227,7 @@ const ReportGraph = ({
               <div className="mx-4 text-center w-auto p-3 border-l-2 border-l-gray-100">
                 <p className="font-semibold md:text-4xl sm:text-xl">
                   {countSevenDay}{" "}
-                  <span className="md:text-2xl sm:text-sm">%</span>
+                  <span className="text-sm text-gray-500">Count</span>
                 </p>
                 <p className="font-thin text-gray-400 mt-2 text-sm">
                   last seven days
@@ -237,7 +237,7 @@ const ReportGraph = ({
               <div className="mx-4 text-center w-auto p-3 border-l-2 border-l-gray-100">
                 <p className="font-semibold md:text-4xl sm:text-xl">
                   {countThirtyDay}{" "}
-                  <span className="md:text-2xl sm:text-sm">%</span>
+                  <span className="text-sm text-gray-500">Count</span>
                 </p>
                 <p className="font-thin text-gray-400 mt-2 text-sm">
                   last thirty days
