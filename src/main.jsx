@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom';
 
 import './index.css'
-import Router from './router'
+import Router from './router';
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

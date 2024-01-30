@@ -3,37 +3,37 @@ import { LuAlignLeft, LuHome, LuX } from "react-icons/lu";
 
 import NavItem from "./NavItem";
 
-const basePath = "/100105-experience-product";
+// const basePath = "/100105-experience-product";
 const links = [
   {
     name: "SAMANTA CONTENT EVALUATOR",
     icon: <LuHome />,
-    path: `${basePath}/`,
+    path: "",
   },
   {
     name: "WORLD PRICE INDICATOR",
     icon: <LuHome />,
-    path: `${basePath}/world-price/`,
+    path: "world-price",
   },
   {
     name: "LEGALZARD",
     icon: <LuHome />,
-    path: `${basePath}/legalzard`,
+    path: "legalzard",
   },
   {
     name: "LOCATION SPECIFIC SEARCH",
     icon: <LuHome />,
-    path: `${basePath}/location-search`,
+    path: "location-search",
   },
   {
     name: "WEBSITE CRAWLER",
     icon: <LuHome />,
-    path: `${basePath}/website-crawler`,
+    path: "website-crawler",
   },
   {
     name: "SEARCH IN LIVINGLAB",
     icon: <LuHome />,
-    path: `${basePath}/search-livinglab`,
+    path: "search-livinglab",
   },
 ];
 
@@ -80,8 +80,8 @@ const SideNav = () => {
 
           <ul className="space-y-2 font-medium">
             {links.map((link) => (
-              <li key={link?.name}>
-                <NavItem name={link?.name} path={link?.path} />
+              <li key={link?.path}>
+                <NavItem name={link?.name} path={link?.path}/>
               </li>
             ))}
             {/* <li>

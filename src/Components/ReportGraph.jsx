@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
@@ -5,12 +6,11 @@ import GraphChart from "./GraphChart";
 import { LuChevronDown, LuExternalLink } from "react-icons/lu";
 import { format } from "date-fns";
 import useReportCount from "./Hooks/useReportCount";
+import Spinner from "./Spinner";
 
-// import ReportSidebar from "./ReportSidebar";
 //eslint-disable-next-line
 const ReportGraph = ({
   productName,
-  reportName,
   productNumber,
   productUrl,
 }) => {
@@ -84,7 +84,10 @@ const ReportGraph = ({
 
         setData(graphData); // Update the state with the fetched data
       } catch (error) {
-        setError({ isError: true, message: error?.data?.message });
+        setError({ 
+          isError: true, 
+          message: `Error occurred while fetching data:" ${error}`
+        });
 
         console.error("Error occurred while fetching data:", error);
       } finally {
@@ -97,7 +100,8 @@ const ReportGraph = ({
 
   useEffect(() => {
     console.log("data", data); // Log the data state when it changes
-  }, [data]);
+    setError(error)
+  }, [data, error]);
 
   const options = {
     scales: {
@@ -112,7 +116,7 @@ const ReportGraph = ({
   console.log("product number=", productNumber);
   return (
     <div>
-      {/* {!error &&  */}
+      {error.isError && <p>{error?.message}</p>}
       <div>
         <Card productName={productName} />
         {/* flex items-center justify-left rounded */}
@@ -186,6 +190,8 @@ const ReportGraph = ({
 
         <a
           href={productUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="cursor-pointer text-white bg-[#005734] hover:bg-[#005734]-800 focus:outline-none font-sm rounded-lg text-sm px-5 py-1 text-center inline-flex items-center"
         >
           Visit
@@ -197,7 +203,7 @@ const ReportGraph = ({
 
       <div className="my-3 w-full md:flex md:flex-row md:gap-5 sm:items-center sm:flex sm:flex-col-reverse">
         {isLoading ? (
-          "Loading ..."
+          <Spinner />
         ) : (
           <ul className="w-full">
             <li
@@ -211,9 +217,10 @@ const ReportGraph = ({
             </li>
             <li>
               <p className="border-b-2 border-b-green-100 text-[#005734] text-lg text-center rounded-md p-1">
-                * Report with data from past month
+                Report with data from past month
               </p>
             </li>
+
             <li className="flex md:flex-row justify-evenly gap-5 sm:gap-2 font-thin font-serif items-center w-full mx-auto bg-white text-green-700 text-xl rounded-md border border-solid border-1 border-green-100 mt-3 h-18 py-3">
               <div className="mx-4 text-center w-auto p-2">
                 <p className="font-semibold md:text-3xl sm:text-xl">
@@ -244,8 +251,9 @@ const ReportGraph = ({
                 </p>
               </div>
             </li>
-            <li className=" flex gap-3 border-b-2 border-b-green-100 text-[#005734] text-lg text-center rounded-md p-1">
-              <p>Do you have coupon?</p>
+            
+            <li className="flex justify-center my-3 gap-3 border-b-2 border-b-green-100 text-[#176546] text-lg text-center rounded-md p-1">
+              <p>Do you want to get your data?</p>
               <button className="bg-custom-color hover:bg-[#176546] text-white rounded-md w-16">
                 Yes
               </button>
@@ -254,7 +262,6 @@ const ReportGraph = ({
         )}
       </div>
     </div>
-    // </ReportSidebar>
   );
 };
 
