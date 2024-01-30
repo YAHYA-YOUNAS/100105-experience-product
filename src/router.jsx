@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import Report from "./Components/Report";
-import Legalzard from "./pages/legalzard.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
 
 const basePath = "/100105-experience-product/";
@@ -16,7 +15,7 @@ const Router = createBrowserRouter([
         element: (
           <Report
             productName={"SAMANTA CONTENT EVALUATOR"}
-            reportName={"SamanthaEvaluator"}
+            productUrl={"https://www.uxlivinglab.org/products/samanta_content_evaluator/"}
             productNumber={"UXLIVINGLAB001"}
           />
         ),
@@ -24,7 +23,11 @@ const Router = createBrowserRouter([
       {
         path: `${basePath}/legalzard`,
         errorElement: <ErrorPage />,
-        element: <Legalzard />,
+        element: <Report
+                    productName={"LEGALZARD"}
+                    productUrl={"https://www.legalzard.com/"}
+                    productNumber={"UXLIVINGLAB003"}
+                />
       },
       {
         path: `${basePath}/website-crawler`,
@@ -33,7 +36,7 @@ const Router = createBrowserRouter([
           <Report
             productName={"WEBSITE CRAWLER"}
             productNumber={"UXLIVINGLAB005"}
-            reportName={"website-crawler"}
+            productUrl={"https://ll05-ai-dowell.github.io/dowellwebsitecrawler/"}
           />
         ),
       },
@@ -44,7 +47,7 @@ const Router = createBrowserRouter([
           <Report
             productName={"LOCATION SPECIFIC SEARCH"}
             productNumber={"UXLIVINGLAB004"}
-            reportName={"LocationSearch"}
+            productUrl={"https://geopositioning.uxlivinglab.online/api/"}
           />
         ),
       },
@@ -55,7 +58,7 @@ const Router = createBrowserRouter([
           <Report
             productName={"WORLD PRICE INDICATOR"}
             productNumber={"UXLIVINGLAB002"}
-            reportName={"WorldPrice"}
+            productUrl={"https://www.uxlivinglab.org/products/world-price-indicator/"}
           />
         ),
       },
@@ -66,7 +69,7 @@ const Router = createBrowserRouter([
           <Report
             productName={"SEARCH LIVING LAB"}
             productNumber={"UXLIVINGLAB006"}
-            reportName={"search-livinglab"}
+            productUrl={"https://search-livinglab.flutterflow.app/"}
           />
         ),
       },
