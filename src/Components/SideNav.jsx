@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { LuAlignLeft, LuHome, LuX } from "react-icons/lu";
 
 import NavItem from "./NavItem";
@@ -38,11 +38,12 @@ const links = [
 ];
 
 const SideNav = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
   return (
     <>
       <div className="flex justify-between">
