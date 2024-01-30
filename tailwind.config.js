@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        'sm': '480px', // Define an extra small breakpoint at 480px
+        'sm': '320px', // Define an extra small breakpoint at 480px
       },
       width: {
         'custom': '200px', // Replace '200px' with your desired width in pixels
