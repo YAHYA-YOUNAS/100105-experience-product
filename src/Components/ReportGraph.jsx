@@ -253,7 +253,7 @@ const ReportGraph = ({
             </li>
             
             <li className="flex justify-center my-3 gap-3 border-b-2 border-b-green-100 text-[#176546] text-lg text-center rounded-md p-1">
-              <p>Do you have coupon?</p>
+              <p>Do you want to get your data?</p>
               <button className="bg-custom-color hover:bg-[#176546] text-white rounded-md w-16">
                 Yes
               </button>
