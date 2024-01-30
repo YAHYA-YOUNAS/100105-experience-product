@@ -9,11 +9,7 @@ import useReportCount from "./Hooks/useReportCount";
 import Spinner from "./Spinner";
 
 //eslint-disable-next-line
-const ReportGraph = ({
-  productName,
-  productNumber,
-  productUrl,
-}) => {
+const ReportGraph = ({ productName, productNumber, productUrl }) => {
   const [data, setData] = useState(null); // Initialize data as null
   const [isLoading, setIsLoading] = useState(true); // Initialize isLoading as true
   const [error, setError] = useState({
@@ -84,9 +80,9 @@ const ReportGraph = ({
 
         setData(graphData); // Update the state with the fetched data
       } catch (error) {
-        setError({ 
-          isError: true, 
-          message: `Error occurred while fetching data:" ${error}`
+        setError({
+          isError: true,
+          message: `Error occurred while fetching data:" ${error}`,
         });
 
         console.error("Error occurred while fetching data:", error);
@@ -100,7 +96,7 @@ const ReportGraph = ({
 
   useEffect(() => {
     console.log("data", data); // Log the data state when it changes
-    setError(error)
+    setError(error);
   }, [data, error]);
 
   const options = {
@@ -217,7 +213,12 @@ const ReportGraph = ({
             </li>
             <li>
               <p className="border-b-2 border-b-green-100 text-[#005734] text-lg text-center rounded-md p-1">
-                Report with data from past month
+                Report with data from{" "}
+                {day === "one_day"
+                  ? "one day ago"
+                  : day === "seven_days"
+                  ? "a week ago"
+                  : "past month"}
               </p>
             </li>
 
@@ -251,7 +252,7 @@ const ReportGraph = ({
                 </p>
               </div>
             </li>
-            
+
             <li className="flex justify-center my-3 gap-3 border-b-2 border-b-green-100 text-[#176546] text-lg text-center rounded-md p-1">
               <p>Do you want to get your data?</p>
               <button className="bg-custom-color hover:bg-[#176546] text-white rounded-md w-16">
