@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 const NavItem = ({ name, path }) => {
   const { pathname } = useLocation();
   const isActive = pathname === `/100105-experience-product/${path}`;
-
+  // const navigateTo = useNavigate();
   return (
     <li>
       <Link

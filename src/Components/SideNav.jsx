@@ -79,7 +79,7 @@ const SideNav = () => {
 
           <ul className="space-y-2 font-medium">
             {links.map((link) => (
-              <li key={link?.name}>
+              <li key={link?.path}>
                 <NavItem name={link?.name} path={link?.path}/>
               </li>
             ))}
