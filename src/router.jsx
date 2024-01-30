@@ -4,7 +4,7 @@ import Report from "./Components/Report";
 import Legalzard from "./pages/legalzard.jsx";
 import ErrorPage from "./Components/ErrorPage.jsx";
 
-const basePath = "/100105-experience-product";
+const basePath = "/100105-experience-product/";
 const Router = createBrowserRouter([
   {
     path: basePath,
@@ -22,12 +22,12 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/legalzard/`,
+        path: `${basePath}/legalzard`,
         errorElement: <ErrorPage />,
         element: <Legalzard />,
       },
       {
-        path: `${basePath}/website-crawler/`,
+        path: `${basePath}/website-crawler`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -38,7 +38,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/location-search/`,
+        path: `${basePath}/location-search`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -49,7 +49,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/world-price/`,
+        path: `${basePath}/world-price`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -60,7 +60,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/search-livinglab/`,
+        path: `${basePath}/search-livinglab`,
         errorElement: <ErrorPage />,
         element: (
           <Report
