@@ -84,7 +84,10 @@ const ReportGraph = ({
 
         setData(graphData); // Update the state with the fetched data
       } catch (error) {
-        setError({ isError: true, message: error?.data?.message });
+        setError({ 
+          isError: true, 
+          message: `Error occurred while fetching data:" ${error}`
+        });
 
         console.error("Error occurred while fetching data:", error);
       } finally {
@@ -97,7 +100,8 @@ const ReportGraph = ({
 
   useEffect(() => {
     console.log("data", data); // Log the data state when it changes
-  }, [data]);
+    setError(error)
+  }, [data, error]);
 
   const options = {
     scales: {
@@ -112,7 +116,7 @@ const ReportGraph = ({
   console.log("product number=", productNumber);
   return (
     <div>
-      {/* {!error &&  */}
+      {error.isError && <p>{error?.message}</p>}
       <div>
         <Card productName={productName} />
         {/* flex items-center justify-left rounded */}
@@ -186,6 +190,8 @@ const ReportGraph = ({
 
         <a
           href={productUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="cursor-pointer text-white bg-[#005734] hover:bg-[#005734]-800 focus:outline-none font-sm rounded-lg text-sm px-5 py-1 text-center inline-flex items-center"
         >
           Visit
