@@ -4,7 +4,7 @@ import axios from "axios";
 import Card from "./Card";
 import GraphChart from "./GraphChart";
 import { LuChevronDown, LuExternalLink } from "react-icons/lu";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import useReportCount from "./Hooks/useReportCount";
 import Spinner from "./Spinner";
 
@@ -60,10 +60,24 @@ const ReportGraph = ({ productName, productNumber, productUrl }) => {
         const responseData = await response.data.response;
 
         console.log("Response", responseData);
+        console.log(
+          "data",
+          responseData.map((data) => {
+            const parsedDate = parse(data.date, "dd-MM-yyyy", new Date());
 
+            return format(parsedDate, "dd,EEEE");
+          })
+        );
+        // console.log("format", [responseData.map((data) => format(data.date))]);
         const graphData = {
           productName: productName,
-          labels: [0, ...responseData.map((data) => data.date)],
+          labels: [
+            0,
+            ...responseData.map((data) => {
+              const parsedDate = parse(data.date, "dd-MM-yyyy", new Date());
+              return format(parsedDate, "dd,EEEE,yyy");
+            }),
+          ],
           datasets: [
             {
               label: productName,

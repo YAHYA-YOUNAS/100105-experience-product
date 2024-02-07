@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import Report from "./Components/Report";
 import ErrorPage from "./Components/ErrorPage.jsx";
-
-
+import EmailExtractor from "./email-extractor/100107-DowellEmailExtractor/src/App.jsx";
+import WebsiteCrawler from "./website-crawler/dowellwebsitecrawler/src/App.jsx";
 const basePath = "/100105-experience-product/";
 const Router = createBrowserRouter([
   {
@@ -16,7 +16,9 @@ const Router = createBrowserRouter([
         element: (
           <Report
             productName={"SAMANTA CONTENT EVALUATOR"}
-            productUrl={"https://www.uxlivinglab.org/products/samanta_content_evaluator/"}
+            productUrl={
+              "https://www.uxlivinglab.org/products/samanta_content_evaluator/"
+            }
             productNumber={"UXLIVINGLAB001"}
           />
         ),
@@ -24,11 +26,13 @@ const Router = createBrowserRouter([
       {
         path: `${basePath}/legalzard`,
         errorElement: <ErrorPage />,
-        element: <Report
-              productName={"LEGALZARD"}
-              productUrl={"https://www.legalzard.com/"}
-              productNumber={"UXLIVINGLAB003"}
+        element: (
+          <Report
+            productName={"LEGALZARD"}
+            productUrl={"https://www.legalzard.com/"}
+            productNumber={"UXLIVINGLAB003"}
           />
+        ),
       },
       {
         path: `${basePath}/website-crawler`,
@@ -37,7 +41,9 @@ const Router = createBrowserRouter([
           <Report
             productName={"WEBSITE CRAWLER"}
             productNumber={"UXLIVINGLAB005"}
-            productUrl={"https://ll05-ai-dowell.github.io/dowellwebsitecrawler/"}
+            productUrl={
+              "https://ll05-ai-dowell.github.io/dowellwebsitecrawler/"
+            }
           />
         ),
       },
@@ -59,7 +65,9 @@ const Router = createBrowserRouter([
           <Report
             productName={"WORLD PRICE INDICATOR"}
             productNumber={"UXLIVINGLAB002"}
-            productUrl={"https://www.uxlivinglab.org/products/world-price-indicator/"}
+            productUrl={
+              "https://www.uxlivinglab.org/products/world-price-indicator/"
+            }
           />
         ),
       },
@@ -70,6 +78,28 @@ const Router = createBrowserRouter([
           <Report
             productName={"SEARCH LIVING LAB"}
             productNumber={"UXLIVINGLAB006"}
+            productUrl={"https://search-livinglab.flutterflow.app/"}
+          />
+        ),
+      },
+      {
+        path: `${basePath}/DowellEmailExtractor`,
+        errorElement: <ErrorPage />,
+        element: <EmailExtractor></EmailExtractor>,
+      },
+      {
+        path: `${basePath}/DowellWebsiteCrawler`,
+        errorElement: <ErrorPage />,
+        element: <WebsiteCrawler></WebsiteCrawler>,
+      },
+
+      {
+        path: `${basePath}/contact-us`,
+        errorElement: <ErrorPage />,
+        element: (
+          <Report
+            productName={"CONTACT US"}
+            productNumber={"UXLIVINGLAB007"}
             productUrl={"https://search-livinglab.flutterflow.app/"}
           />
         ),

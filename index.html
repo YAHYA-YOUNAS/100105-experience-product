@@ -26,9 +26,42 @@
           window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
         }
       })(window.location);
+
+
+      
+      // Function to get current pathname
+      function getCurrentPathname() {
+        return window.location.pathname;
+      }
+      
+      // Function to conditionally set script source
+      function setScriptSource() {
+        const pathname = getCurrentPathname();
+        const pathCollection={
+          "/100105-experience-product/DowellEmailExtractor/": "./src/email-extractor/100107-DowellEmailExtractor/src/main.jsx",
+          "/100105-experience-product/DowellWebsiteCrawler/": "./src/website-crawler/dowellwebsitecrawler/src/main.jsx"
+       
+        }
+        console.log('pathname',pathname)
+        const mainJsxPath = Object.keys(pathCollection).includes(pathname) ? pathCollection[pathname] :"/src/main.jsx";
+       // const mainJsxPath = isActive ? "./src/email-extractor/100107-DowellEmailExtractor/src/main.jsx" : "/src/main.jsx";
+        
+        // Create a new script element
+        const newScript = document.createElement("script");
+        newScript.type = "module";
+        newScript.src = mainJsxPath;
+        
+        // Remove the existing script
+        const existingScript = document.querySelector('script[type="module"]');
+        existingScript.parentNode.replaceChild(newScript, existingScript);
+      }
+      
+      // Call setScriptSource on page load
+      window.onload = setScriptSource;
+    
     </script>
   </head>
-  <body>
+  
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -35,6 +35,11 @@ const links = [
     icon: <LuHome />,
     path: "search-livinglab",
   },
+  {
+    name: "CONTACT US EXTRACTOR",
+    icon: <LuHome />,
+    path: "contact-us",
+  },
 ];
 
 const SideNav = () => {
@@ -81,7 +86,7 @@ const SideNav = () => {
           <ul className="space-y-2 font-medium">
             {links.map((link) => (
               <li key={link?.path}>
-                <NavItem name={link?.name} path={link?.path}/>
+                <NavItem name={link?.name} path={link?.path} />
               </li>
             ))}
             {/* <li>
