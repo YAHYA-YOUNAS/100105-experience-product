@@ -8,6 +8,7 @@ const Layout = ({ children }) => {
   const pathCollection = [
     "/100105-experience-product/DowellEmailExtractor",
     "/100105-experience-product/DowellWebsiteCrawler",
+    "/100105-experience-product/DowellPermutation",
   ];
 
   const isActive = pathCollection.includes(pathname); // === `/100105-experience-product/DowellEmailExtractor`;

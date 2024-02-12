@@ -75,7 +75,7 @@ const ReportGraph = ({ productName, productNumber, productUrl }) => {
             0,
             ...responseData.map((data) => {
               const parsedDate = parse(data.date, "dd-MM-yyyy", new Date());
-              return format(parsedDate, "dd,EEEE,yyy");
+              return format(parsedDate, "dd,EEEE");
             }),
           ],
           datasets: [

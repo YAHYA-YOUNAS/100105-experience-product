@@ -4,6 +4,7 @@ import Report from "./Components/Report";
 import ErrorPage from "./Components/ErrorPage.jsx";
 import EmailExtractor from "./email-extractor/100107-DowellEmailExtractor/src/App.jsx";
 import WebsiteCrawler from "./website-crawler/dowellwebsitecrawler/src/App.jsx";
+import DowellPermutaion from "./dowell-permutation/src/App.jsx";
 const basePath = "/100105-experience-product/";
 const Router = createBrowserRouter([
   {
@@ -91,6 +92,11 @@ const Router = createBrowserRouter([
         path: `${basePath}/DowellWebsiteCrawler`,
         errorElement: <ErrorPage />,
         element: <WebsiteCrawler></WebsiteCrawler>,
+      },
+      {
+        path: `${basePath}/DowellPermutation`,
+        errorElement: <ErrorPage />,
+        element: <DowellPermutaion></DowellPermutaion>,
       },
 
       {
