@@ -74,7 +74,7 @@ function OccurenceModal({
 
   return (
     <>
-      <Modal centered show={showModal} onHide={() => setOpenModal(false)}>
+      <Modal centered={true} show={showModal} onHide={() => setOpenModal(false)}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div className='modal-divs'>

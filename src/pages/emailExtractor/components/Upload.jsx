@@ -67,10 +67,10 @@ const FileUpload = ({ urls }) => {
         <div className='flex flex-row gap-2 justify-center'>
           <button
             disabled={!selectedFile || uploading}
-            className='mt-3 bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded flex items-center'
+            className='mt-3 bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded flex items-center mb-4'
           >
             {/* {uploading ? "Uploading and Submitting..." : "Upload"} */}
-            <p>{uploading ? <Spinner /> : "Upload and Submit"}</p>
+            <p className="mb-0">{uploading ? <Spinner /> : "Upload and Submit"}</p>
           </button>
         </div>
       </div>

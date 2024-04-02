@@ -6,8 +6,9 @@ import { toast } from "react-toastify";
 import { FaSpider } from "react-icons/fa";
 import { FaExclamationCircle } from "react-icons/fa";
 import OccurenceModal from "./components/Modal";
-import Spinner from "../emailExtractor/components/spinner";
+import Spinner from "./components/spinner";
 import CardComponent from "./components/pageCard";
+
 
 const Crawler = () => {
   const [pagesUrl, setPagesUrl] = useState({});
@@ -38,9 +39,8 @@ const Crawler = () => {
           toname: "Dowell UX Living Lab",
           // toemail: "dowell@dowellresearch.uk",
           toemail: formValues.email,
-          subject: `${
-            formValues.email
-          } result from DoWell Website Crawler on ${new Date()}`,
+          subject: `${formValues.email
+            } result from DoWell Website Crawler on ${new Date()}`,
           email_content: htmlContent,
         }
       );
@@ -126,21 +126,19 @@ const Crawler = () => {
                   <a href="#" style="font-size: 1.2em; color: #00466a; text-decoration: none; font-weight: 600">Dowell UX Living Lab</a>
                 </div>
                 <p style="font-size: 1.1em">Email : ${formValues.email}</p>
-                <p style="font-size: 1.1em">Website Link : ${
-                  formValues.web_url
-                }</p>
+                <p style="font-size: 1.1em">Website Link : ${formValues.web_url
+          }</p>
                 <p style="font-size: 1.1em">Pages</p> ${" "}
                 <ul>
                   ${Object.entries(response?.data?.meta_data?.pages_url)
-                    .map(
-                      ([page, link]) =>
-                        `<li key=${page}>${page} : ${
-                          link
-                            ? `<a href=${link}>${link}</a>`
-                            : "No link available"
-                        }</li>`
-                    )
-                    .join("")}
+            .map(
+              ([page, link]) =>
+                `<li key=${page}>${page} : ${link
+                  ? `<a href=${link}>${link}</a>`
+                  : "No link available"
+                }</li>`
+            )
+            .join("")}
                 </ul>
               </div>
             </div>
@@ -194,8 +192,8 @@ const Crawler = () => {
   return (
     <div className='page-container'>
       <div style={{ width: "100%", height: "100%" }}>
-        <div>
-          <div className='container'>
+        <div className="mx-4">
+          <div className='container px-4'>
             {showOccurrence && modalOpen && (
               <OccurenceModal
                 email={formValues?.email}
@@ -206,7 +204,7 @@ const Crawler = () => {
                 handleFormData={handleFormData}
               />
             )}
-            <div className='row justify-content-center mt-2'>
+            <div className='row justify-content-center mt-1'>
               <div
                 style={{
                   display: "flex",
@@ -236,7 +234,7 @@ const Crawler = () => {
                 </p>
 
                 <form onSubmit={handleScrapeWebsiteInfo}>
-                  <div className='input-group mb-3 flex flex-row border border-gray-300 rounded-md'>
+                  <div className='input-group mb-3 flex flex-row border border-gray-300 rounded-md flex-nowrap'>
                     <span
                       // style={{
                       //   fontWeight: "bold",
@@ -316,14 +314,16 @@ const Crawler = () => {
                       {!formValues.web_url ? (
                         "Enter Web Url"
                       ) : // : !formValues.email
-                      // ? "Enter Your Email"
-                      loadingGetOccurence ? (
-                        <Spinner />
-                      ) : loading ? (
-                        "Crawling..."
-                      ) : (
-                        `Crawl`
-                      )}
+                        // ? "Enter Your Email"
+                        loadingGetOccurence ? (
+                          <div className='spinner-border spinner-border-sm' role='status'>
+                            <span className='sr-only'></span>
+                          </div>
+                        ) : loading ? (
+                          "Crawling..."
+                        ) : (
+                          `Crawl`
+                        )}
                     </button>
                   </div>
                 </form>

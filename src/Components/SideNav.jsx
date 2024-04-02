@@ -62,7 +62,7 @@ const SideNav = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0`}
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 light:bg-gray-800">
+        <div className="h-full px-2 py-4 overflow-y-auto bg-gray-50 light:bg-gray-800">
           <div
             href="#"
             className="mb-7 flex justify-center items-center rounded-lg px-3 py-2 text-slate-900"
@@ -77,9 +77,9 @@ const SideNav = () => {
             />
           </a>
 
-          <ul className="space-y-2 font-medium">
+          <ul className="space-y-1 font-medium pl-0">
             {links.map((link) => (
-              <li key={link?.path}>
+              <li key={link?.path} className="">
                 <NavItem name={link?.name} path={link?.path}/>
               </li>
             ))}

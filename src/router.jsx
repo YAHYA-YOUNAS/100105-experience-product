@@ -13,7 +13,7 @@ const Router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: `${basePath}report/dewell-extractor`,
+        path: `${basePath}report/dowell-extractor`,
         errorElement: <ErrorPage />,
         element: <EmailExtractor />,
       },

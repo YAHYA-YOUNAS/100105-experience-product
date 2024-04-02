@@ -260,10 +260,10 @@ const EmailExtractor = () => {
             <button
               onClick={handleDownLoadFile}
               disabled={links.length < 1 || loadingDownload}
-              className='bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded flex items-center'
+              className='bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded flex items-center justify-center'
             >
               <FaFileExcel />
-              <p>
+              <p className="mb-0">
                 {links.length < 1 ? (
                   "Download"
                 ) : loadingDownload ? (

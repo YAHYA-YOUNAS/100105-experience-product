@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Layout from "./Components/Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import 'bootstrap/dist/css/bootstrap.css';
 const App = () => {
   return (
     <>
