@@ -16,6 +16,25 @@ const EmailExtractor = () => {
   const [linksUrl, setLinksUrl] = useState([]);
   const links = linksUrl?.map(({ item }) => item);
   const [email, setEmail] = useState("");
+  const [loadingIndex, setLoadingIndex] = useState(null);
+  const [responseReceived, setResponseReceived] = useState(false);
+  const buttonLinks = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+  ];
+
+  const handleButtonClick = async (index) => {
+    // console.log(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=6603f796d3a4445b4125dcc1&item=${index}`);
+    setLoadingIndex(index);
+    try {
+      const response = await axios.get(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=6603f7fa9759d56c407cf4d4&item=${index}`);
+      console.log(response);
+      setResponseReceived(true);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoadingIndex(null);
+    }
+  };
 
   const handleScrapeForm = async () => {
     //delete id from the objects array and take the link
@@ -141,10 +160,10 @@ const EmailExtractor = () => {
             <p style="font-size: 1.1em">Extracted Form Fields</p> ${" "}
             <ul>
               ${Object.entries(datas)
-                .map(
-                  ([name, value]) => `<li key=${name}>${name} : ${value}</li>`
-                )
-                .join("")}
+          .map(
+            ([name, value]) => `<li key=${name}>${name} : ${value}</li>`
+          )
+          .join("")}
             </ul>
           </div>
         </div>
@@ -253,8 +272,8 @@ const EmailExtractor = () => {
               {links.length < 1
                 ? "Enter Web Urls"
                 : loadingCreate
-                ? "Scraping Forms..."
-                : "Scrap Forms"}
+                  ? "Scraping Forms..."
+                  : "Scrap Forms"}
             </button>
 
             <button
@@ -309,11 +328,36 @@ const EmailExtractor = () => {
                 </div>
               )}
             </Accordion>
+            <FileUpload urls={links} />
+            <div className="bg-gray-100 py-2 rounded-lg px-2">
+              <h2 className="text-base text-center font-semibold">
+                On a scale of 0-10, how likely are you to recommend the product to a
+                friend or a colleague?
+              </h2>
+              {responseReceived ? (
+                <div className="text-center text-xl text-green-700 font-semibold">Thanks for your response!</div>
+              ) : (
+                <div className="flex-none grid grid-cols-11">
+                  {buttonLinks.map((index) => (
+                    <button
+                      key={index}
+                      className="text-center button"
+                      onClick={() => handleButtonClick(index)}
+                      disabled={loadingIndex === index}
+                    >
+                      {loadingIndex === index ? (
+                        <div className="spinner"></div>
+                      ) : (
+                        index
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         )
       )}
-
-      <FileUpload urls={links} />
 
       <div className='flex justify-center mt-3'>
         <a href='https://visitorbadge.io/status?path=https%3A%2F%2Fll05-ai-dowell.github.io%2F100107-DowellEmailExtractor%2F'>
