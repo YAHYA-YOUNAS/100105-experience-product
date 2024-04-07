@@ -19,7 +19,7 @@ const Router = createBrowserRouter([
         element: <EmailExtractor />,
       },
       {
-        path: `${basePath}webiste-crawler`,
+        path: `${basePath}website-crawler`,
         errorElement: <ErrorPage />,
         element: <Crawler />,
       },

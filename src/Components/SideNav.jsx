@@ -49,7 +49,7 @@ const SideNav = () => {
   const shouldDisplaySideNav = location.pathname !== `${basePath}` &&
     !location.pathname.includes(
       `${basePath}dowell-extractor`
-    ) && !location.pathname.includes(`${basePath}webiste-crawler`);
+    ) && !location.pathname.includes(`${basePath}website-crawler`);
 
   // { console.log(`yessssssss ${basePath}dowell-extractor ${location.pathname}`) }
 
