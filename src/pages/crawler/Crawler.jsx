@@ -185,6 +185,10 @@ const Crawler = () => {
 
   const handleScrapeWebsiteInfo = async (e) => {
     e.preventDefault();
+    if (!formValues.email) {
+      toast.error("Please enter your email address");
+      return;
+    }
     // if (!showOccurrence) {
     handleOccurrence();
 
@@ -289,7 +293,7 @@ const Crawler = () => {
                           email: e.target.value,
                         })
                       }
-                      placeholder='dowell@dowellresearch.uk'
+                      placeholder='Enter your email address'
                     />
                   </div>
 
