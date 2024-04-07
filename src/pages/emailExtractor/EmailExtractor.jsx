@@ -23,7 +23,7 @@ const EmailExtractor = () => {
     try {
       setLoadingCreate(true);
       const response = await axios.post(
-        `https://www.uxlive.me/api/contact-us-extractor/`,
+        `https://uxlivinglab100106.pythonanywhere.com/api/contact-us-extractor/`,
         {
           page_links: links,
         }
@@ -73,7 +73,7 @@ const EmailExtractor = () => {
       setLoadingDownload(true);
 
       const response = await axios.post(
-        `https://www.uxlive.me/api/download-csv/?file_type=xlsx`,
+        `https://uxlivinglab100106.pythonanywhere.com/api/download-csv/?file_type=xlsx`,
         {
           page_links: links,
         },

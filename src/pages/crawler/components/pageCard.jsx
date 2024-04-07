@@ -79,7 +79,7 @@ const CardComponent = ({ page, email }) => {
     console.log(formDataToSend);
     setLoading(true);
     axios
-      .post("https://www.uxlive.me/api/website-info-extractor/", formDataToSend)
+      .post("https://uxlivinglab100106.pythonanywhere.com/api/website-info-extractor/", formDataToSend)
 
       .then((response) => {
         setData(response?.data);

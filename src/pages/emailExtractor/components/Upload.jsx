@@ -24,7 +24,7 @@ const FileUpload = ({ urls }) => {
       try {
         setUploading(true);
         const response = await axios.post(
-          "https://www.uxlive.me/api/submit-csv/",
+          "https://uxlivinglab100106.pythonanywhere.com/api/submit-csv/",
           formData,
           {
             headers: {

@@ -185,9 +185,8 @@ img {
 .page-container {
     background-color: #ffffff;
     border-radius: 20px;
-    width: 70%;
-    /* Set your desired width */
-    margin: 10vh auto 5vh;
+    width: 75%;
+    left: 0;
     /* Center vertically and horizontally */
     padding: 20px;
     /* Add padding for better visual */
@@ -195,7 +194,7 @@ img {
     /* Darker box shadow */
 
     @media (max-width: 912px) {
-        width: 70%;
+        width: 80%;
         /* Adjust width for tablets */
     }
 
@@ -227,3 +226,67 @@ img {
     flex-direction: row;
     gap: 5px;
 }
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+  }
+  
+  .button {
+    padding: 5px 3px;
+    font-size: 12px;
+    background-color: #4caf50;
+    border: wheat 1px solid;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s linear infinite;
+  }
+  
+  @media (max-width: 768px) {
+    .card-container {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+  
+    .card {
+      padding: 15px;
+    }
+  
+    .button {
+      padding: 5px 8px;
+      font-size: 10px;
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  .margin_{
+    margin: 1rem auto;
+  }

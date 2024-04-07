@@ -4,6 +4,7 @@ import Report from "./Components/Report";
 import ErrorPage from "./Components/ErrorPage.jsx";
 import EmailExtractor from "./pages/emailExtractor/EmailExtractor.jsx";
 import Crawler from "./pages/crawler/Crawler.jsx";
+import AuthorizationScreen from "./pages/AuthorizationScreen/AuthorizationScreen.jsx";
 
 const basePath = "/100105-experience-product/";
 
@@ -13,17 +14,24 @@ const Router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: `${basePath}report/dowell-extractor`,
+        path: `${basePath}dowell-extractor`,
         errorElement: <ErrorPage />,
         element: <EmailExtractor />,
       },
       {
-        path: `${basePath}report/webiste-crawler`,
+        path: `${basePath}webiste-crawler`,
         errorElement: <ErrorPage />,
         element: <Crawler />,
       },
       {
         path: basePath,
+        errorElement: <ErrorPage />,
+        element: (
+          <AuthorizationScreen />
+        ),
+      },
+      {
+        path: `${basePath}/report`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -36,7 +44,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/legalzard`,
+        path: `${basePath}/report/legalzard`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -48,7 +56,7 @@ const Router = createBrowserRouter([
       },
 
       {
-        path: `${basePath}/website-crawler`,
+        path: `${basePath}/report/website-crawler`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -61,7 +69,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/location-search`,
+        path: `${basePath}/report/location-search`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -72,7 +80,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/world-price`,
+        path: `${basePath}/report/world-price`,
         errorElement: <ErrorPage />,
         element: (
           <Report
@@ -85,7 +93,7 @@ const Router = createBrowserRouter([
         ),
       },
       {
-        path: `${basePath}/search-livinglab`,
+        path: `${basePath}/report/search-livinglab`,
         errorElement: <ErrorPage />,
         element: (
           <Report

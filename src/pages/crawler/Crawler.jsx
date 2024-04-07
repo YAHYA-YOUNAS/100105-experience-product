@@ -17,6 +17,12 @@ const Crawler = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [occurrence, setOccurrence] = useState(null);
   const [showOccurrence, setShowOccurrence] = useState(false);
+  const [loadingIndex, setLoadingIndex] = useState(null);
+  const [responseReceived, setResponseReceived] = useState(false);
+
+  const buttonLinks = [
+   0,1,2,3,4,5,6,7,8,9,10
+  ];
 
   const [loadingGetOccurence, setLoadingOccurence] = useState(false);
 
@@ -81,6 +87,20 @@ const Crawler = () => {
     }
   };
 
+  const handleButtonClick = async (index) => {
+    // console.log(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=6603f796d3a4445b4125dcc1&item=${index}`);
+    setLoadingIndex(index);
+    try {
+      const response = await axios.get(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=6603f796d3a4445b4125dcc1&item=${index}`);
+      console.log(response);
+      setResponseReceived(true);
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setLoadingIndex(null);
+    }
+  };
+
   const handleFormData = async () => {
     const formDataToSend = {
       web_url: `https://${formValues.web_url}`,
@@ -93,7 +113,7 @@ const Crawler = () => {
 
     axios
       .post(
-        `https://www.uxlive.me/api/website-info-extractor/?main=${true}`,
+        `https://uxlivinglab100106.pythonanywhere.com/api/website-info-extractor/?main=${true}`,
         formDataToSend
       )
       .then((response) => {
@@ -353,6 +373,32 @@ const Crawler = () => {
                     </div>
                   </div>
                 ))}
+                <div className="bg-gray-100 py-2 rounded-lg">
+                  <h2 className="text-base text-center font-semibold">
+                    On a scale of 0-10, how likely are you to recommend the product to a
+                    friend or a colleague?
+                  </h2>
+                  {responseReceived ? (
+                    <div className="text-center text-xl text-green-700 font-semibold">Thanks for your response!</div>
+                  ) : (
+                    <div className="flex-none grid grid-cols-11">
+                      {buttonLinks.map((index) => (
+                        <button
+                          key={index}
+                          className="text-center button"
+                          onClick={() => handleButtonClick(index)}
+                          disabled={loadingIndex === index}
+                        >
+                          {loadingIndex === index ? (
+                            <div className="spinner"></div>
+                          ) : (
+                            index
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             ) : empty ? (
               <div className='container d-flex flex-column align-items-center justify-content-center'>
@@ -365,7 +411,8 @@ const Crawler = () => {
               </div>
             ) : (
               ""
-            )}
+            )
+            }
             <div className='bottom-img-display'>
               <a href='https://visitorbadge.io/status?path=https%3A%2F%2Fll05-ai-dowell.github.io%2Fdowellwebsitecrawler%2F'>
                 <img

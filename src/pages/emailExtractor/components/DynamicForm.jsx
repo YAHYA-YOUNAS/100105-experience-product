@@ -53,7 +53,7 @@ const DynamicForm = ({ formData, webUrl, email }) => {
     // Send the data to the API using Axios
     setLoading(true);
     axios
-      .post("https://www.uxlive.me/api/submit-contact-form/", dataToSend)
+      .post("https://uxlivinglab100106.pythonanywhere.com/api/submit-contact-form/", dataToSend)
       .then((response) => {
         setLoading(false);
         toast.success(JSON.stringify(response?.data?.success));
