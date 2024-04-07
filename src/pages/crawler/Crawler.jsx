@@ -212,8 +212,8 @@ const Crawler = () => {
   return (
     <div className='page-container'>
       <div style={{ width: "100%", height: "100%" }}>
-        <div className="mx-4">
-          <div className='container px-4'>
+        <div className="">
+          <div className='container'>
             {showOccurrence && modalOpen && (
               <OccurenceModal
                 email={formValues?.email}
