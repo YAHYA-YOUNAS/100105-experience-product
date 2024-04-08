@@ -88,14 +88,14 @@ const Crawler = () => {
   };
 
   const handleButtonClick = async (index) => {
-    // console.log(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=6603f796d3a4445b4125dcc1&item=${index}`);
     setLoadingIndex(index);
     try {
-      const response = await axios.get(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=6603f796d3a4445b4125dcc1&item=${index}`);
+      const response = await axios.get(`https://100035.pythonanywhere.com/addons/create-response/?workspace_id=653637a4950d738c6249aa9a&username=CustomerSupport&scale_id=66138dcbed3a1e7dcda71ca7&item=${index}`);
       console.log(response);
       setResponseReceived(true);
     } catch (error) {
       console.error('Error:', error);
+      toast.error('Unable to record your response, Please try again later');
     } finally {
       setLoadingIndex(null);
     }
