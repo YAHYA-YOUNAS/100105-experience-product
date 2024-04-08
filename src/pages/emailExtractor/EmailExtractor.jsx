@@ -332,11 +332,10 @@ const EmailExtractor = () => {
             <FileUpload urls={links} />
             <div className="bg-gray-100 py-2 rounded-lg px-2">
               <h2 className="text-base text-center font-semibold">
-                On a scale of 0-10, how likely are you to recommend the product to a
-                friend or a colleague?
+              {responseReceived ? '' : 'On a scale of 0-10, how likely are you to recommend the product to a friend or a colleague?'}
               </h2>
               {responseReceived ? (
-                <div className="text-center text-xl text-green-700 font-semibold">Thanks for your response!</div>
+                <div className="text-center text-xl text-green-700 font-semibold mb-2">Thanks for your response!</div>
               ) : (
                 <div className="flex-none grid grid-cols-11">
                   {buttonLinks.map((index) => (
