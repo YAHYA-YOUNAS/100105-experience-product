@@ -377,7 +377,7 @@ const EmailExtractor = () => {
       )}
 
       <div className='flex justify-center mt-3'>
-        <a href='https://visitorbadge.io/status?path=https%3A%2F%2Fll05-ai-dowell.github.io%2F100107-DowellEmailExtractor%2F'>
+        <a href='https://visitorbadge.io/status?path=https%3A%2F%2Fll05-ai-dowell.github.io%2F100107-DowellEmailExtractor%2F' target="_blank"> 
           <img
             style={{ width: "100px", height: "auto" }}
             src='https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fll05-ai-dowell.github.io%2F100107-DowellEmailExtractor%2F&labelColor=%23005734&countColor=%23697689&style=plastic&labelStyle=upper'

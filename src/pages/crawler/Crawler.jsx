@@ -417,7 +417,7 @@ const Crawler = () => {
             )
             }
             <div className='bottom-img-display'>
-              <a href='https://visitorbadge.io/status?path=https%3A%2F%2Fll05-ai-dowell.github.io%2Fdowellwebsitecrawler%2F'>
+              <a href='https://visitorbadge.io/status?path=https%3A%2F%2Fll05-ai-dowell.github.io%2Fdowellwebsitecrawler%2F' target="_blank">
                 <img
                   style={{ width: "100px", height: "auto" }}
                   src='https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fll05-ai-dowell.github.io%2Fdowellwebsitecrawler%2F&labelColor=%23458204&countColor=%23555555&style=plastic&labelStyle=upper'
