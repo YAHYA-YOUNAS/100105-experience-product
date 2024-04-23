@@ -5,6 +5,8 @@ import ErrorPage from "./Components/ErrorPage.jsx";
 import EmailExtractor from "./pages/emailExtractor/EmailExtractor.jsx";
 import Crawler from "./pages/crawler/Crawler.jsx";
 import AuthorizationScreen from "./pages/AuthorizationScreen/AuthorizationScreen.jsx";
+import OpenSource from "./pages/OpenSource/OpenSource.jsx";
+import SamantaContent from "./pages/SamantaContent/SamantaContent.jsx";
 
 const basePath = "/100105-experience-product/";
 
@@ -22,6 +24,16 @@ const Router = createBrowserRouter([
         path: `${basePath}website-crawler`,
         errorElement: <ErrorPage />,
         element: <Crawler />,
+      },
+      {
+        path: `${basePath}samanta-content`,
+        errorElement: <ErrorPage />,
+        element: <SamantaContent />,
+      },
+      {
+        path: `${basePath}open-source`,
+        errorElement: <ErrorPage />,
+        element: <OpenSource />,
       },
       {
         path: basePath,
