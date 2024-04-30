@@ -22,8 +22,6 @@ function Modal({userData, setShowModal, handleTryAgainClick}) {
     const [couponError, setCouponError] = useState('');
     const hasFetchedData = useRef(false);
 
-    const appName = process.env.REACT_APP_NAME;
-
     // Register the user if he visits for the first time, and get number of used time
     useEffect(() => {
         const checkOccurrences = async () => {
@@ -62,8 +60,7 @@ function Modal({userData, setShowModal, handleTryAgainClick}) {
 
     const handleContributeClick = (event) => {
         event.preventDefault();
-        const paymentApiUrl = process.env.REACT_APP_PAYMENT_API_URL
-        window.open(paymentApiUrl,  '_blank');
+        window.open("https://dowellpay.online/contribute-payment/?product_number=UXLIVINGLAB003",  '_blank');
     }
 
     const handleYesClick = (event) => {
@@ -91,37 +88,37 @@ function Modal({userData, setShowModal, handleTryAgainClick}) {
 
     return (
         <>
-            <div className="flex justify-center items-center overflow-hidden fixed inset-0 z-50 outline-none focus:outline-none font-poppins">
-                <div className="relative w-11/12 my-6 mx-auto max-w-2xl">
+            <div className="flex justify-center items-center overflow-hidden fixed inset-0 z-50 outline-none focus:outline-none">
+                <div className="relative w-11/12 my-6 pb-2 mx-auto max-w-3xl">
                     <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none max-h-screen overflow-y-auto">
                         <Header classes="w-36 mx-auto"/>
-                        <h2 className="text-lg font-semibold text-center pt-5">{appName}</h2>
+                        <h2 className="text-lg font-semibold text-center">Open Source License Compatibility Tracker</h2>
 
                         {userDetailsError ? 
                             <Message classes="text-red-500 font-bold w-50 mx-auto px-4 m-4" message={userDetailsError}/>
                         : 
                             <>
-                                {(occurrences || occurrences === 0) && <Message classes="text-black w-50 mx-auto my-5" message={`You have used open source license ${occurrences} times`}/> }
+                                {(occurrences || occurrences === 0) && <Message classes="w-fit mx-auto my-3" message={`You have used open source license ${occurrences} times`}/> }
                             </> 
                         }
                         
                         {showResult ?
                             <>
                                 <Result data={result} email={email}/>
-                                <div className="w-fit mx-auto mt-5 md:mt-10">
-                                    <Button type="button" classes="btn-tryagain" name="Try Again" onButtonClick={handleTryAgainClick}/>
+                                <div>
+                                    <Button type="button" classes="bg-green-700 font-normal mx-auto my-3 p-2.5" name="Try Again" onButtonClick={handleTryAgainClick}/>
                                 </div>
                             </>
                             :
-                            <div className="flex gap-5 items-center justify-center p-6 border-t border-solid border-blueGray-200 rounded-b">
-                                <Button type="button" classes="btn-lightred" name="Cancel" onButtonClick={() => setShowModal(false)}/>
+                            <div className="flex gap-3 items-center justify-center p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                <Button type="button" classes="bg-red-500" name="Cancel" onButtonClick={() => setShowModal(false)}/>
                             
                                 {(occurrences >= 0 && occurrences <= 6 && !userDetailsError) &&
-                                    <Button type="button" classes="btn-lightgreen" name="Check" showIcon="check" loading={loading} onButtonClick={handleCheckClick}/>
+                                    <Button type="button" classes="bg-[#61B84C] px-2.5" name="Check" showIcon="check" loading={loading} onButtonClick={handleCheckClick}/>
                                 }
 
                                 {occurrences >=4 && 
-                                    <Button type="submit" classes="btn-lightgreen" name="Contribute" onButtonClick={handleContributeClick} />
+                                    <Button type="submit" classes="bg-[#61B84C] px-2.5" name="Contribute" onButtonClick={handleContributeClick} />
                                 }
                             </div>
                         }
@@ -132,10 +129,10 @@ function Modal({userData, setShowModal, handleTryAgainClick}) {
 
                         {showCoupon &&
                             <>
-                                {couponError && <h3 className="text-center text-sm py-3 font-bold text-red-500">{couponError}</h3> }
+                                {couponError && <h3 className="text-center text-sm py-2 font-bold text-red-500">{couponError}</h3> }
                                 <div className="flex flex-col px-4 pb-3 gap-2 justify-center items-center">
                                     <Input type="text" inputValue={couponCode} name="text" id="text" placeholder="Enter your code" onInputChange={(value) => setCouponCode(value)} />
-                                    <Button type="button" classes="btn-lightgreen" name="Redeem" loading={loading} onButtonClick={handleRedeemClick}/>
+                                    <Button type="button" classes="bg-[#61B84C] px-2" name="Redeem" loading={loading} onButtonClick={handleRedeemClick}/>
                                 </div>
                             </>
                         }

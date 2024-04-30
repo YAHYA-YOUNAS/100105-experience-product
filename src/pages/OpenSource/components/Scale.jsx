@@ -6,8 +6,6 @@ import { scaleAPI } from '../apiCalls';
 function Scale () {
   const [feedback, setFeedback] = useState(false);
 
-  const appName = process.env.REACT_APP_NAME;
-
   // Display Feedback for 5 seconds
   useEffect(() => {
     if (feedback) {
@@ -27,10 +25,10 @@ function Scale () {
   return (
     <div id="scale" className="mt-10">
       <div className="text-sm font-poppins py-4 rounded text-center bg-neutral-100">
-        <h1>On a scale of 0-10, how likely are you to recommend <span className="font-bold text-green-800">{appName}</span>  to a friend or a colleague?</h1>
+        <p className="text-base px-3">On a scale of 0-10, how likely are you to recommend <span className="font-bold text-green-800">Open Source License Compatibility Tracker</span>  to a friend or a colleague?</p>
         <div className="flex flex-wrap justify-center">
           {Array.from({ length: 11 }, (_, i) => (
-            <Button key={i} index={i} type="button" classes="btn-lightgreen" name={i} onButtonClick={handleClick}/>
+            <Button key={i} index={i} type="button" classes="bg-[#61B84C] px-[12px]" name={i} onButtonClick={handleClick}/>
           ))}
         </div>
         

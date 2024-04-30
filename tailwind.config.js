@@ -15,6 +15,10 @@ export default {
       backgroundColor: {
         'custom-color': '#005734',
       },
+      fontFamily: {     // For Open Source License Compaitibility Page
+        'poppins': ['Poppins'],
+        'roboto': ['Roboto', 'sans-serif'],
+     }
     },
   },
   plugins: [],

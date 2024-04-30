@@ -106,21 +106,21 @@ function Result({data, email}) {
   }
 
   return (
-    <div id="results" className="w-11/12 mx-auto text-sm font-poppins p-5 mt-5 rounded">
-      <h1 className="text-center md:text-lg mb-5">Compatibility level between <span style={{color: '#D6BB41'}}>{data.license_1.license_name}</span> and <span style={{color: '#D6BB41'}}>{data.license_2.license_name}</span></h1>
-      <h2 className="text-center text-2xl">{data.percentage_of_compatibility}%</h2>
-      <h2 className="text-center text-lg font-bold my-3">
+    <div id="results" className="w-11/12 mx-auto text-sm font-poppins p-5 mt-2 rounded">
+      <h1 className="text-center md:text-lg">Compatibility level between <span style={{color: '#D6BB41'}}>{data.license_1.license_name}</span> and <span style={{color: '#D6BB41'}}>{data.license_2.license_name}</span></h1>
+      <h2 className="text-center text-2xl mt-3">{data.percentage_of_compatibility}%</h2>
+      <h2 className="text-center text-lg font-bold mt-3">
         {data.percentage_of_compatibility >= 80 && 'Highly recommended'}
         {data.percentage_of_compatibility >= 50 &&  data.percentage_of_compatibility < 80 &&  'Recommended' }
         {data.percentage_of_compatibility < 50 && 'Not recommended'}
       </h2>
-      <p className="text-justify mb-5"><span className="font-bold">Our recommendation:</span> Consult your legal team for license amendments, If not fully compatible, follow conditions and add required liabilities & copyright notices for compliance.</p>
+      <p className="text-justify mt-3 mb-[30px]"><span className="font-bold">Our recommendation:</span> Consult your legal team for license amendments, If not fully compatible, follow conditions and add required liabilities & copyright notices for compliance.</p>
       <hr/>
-      <h2 className="text-center md:text-lg my-5">Compatibility Check By Dowell UX Livinglab</h2>
+      <h2 className="text-center md:text-lg">Compatibility Check By Dowell UX Livinglab</h2>
 
       <Confirmation message="Do you want to mail this?" loading={loading} handleYesClick={handleYesClick}/>
 
-      {message && <Message classes="text-black w-50 mx-auto my-2" message={`Results are mailed to ${email}`}/> }
+      {message && <Message classes="w-fit mx-auto my-2" message={`Results are mailed to: ${email}`}/> }
 
       <Scale/>
     </div>

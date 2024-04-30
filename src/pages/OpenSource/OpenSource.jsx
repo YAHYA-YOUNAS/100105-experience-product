@@ -11,10 +11,10 @@ const OpenSource = ()=>{
     setTryAgain(key => key + 1);
   }
   return (
-    <div id="main" className="text-sm w-full md:w-8/12 lg:w-6/12 sm:text-md md:text-base mx-auto p-4 mt-2 rounded-md border border-gray-400 md:border-none">
-      <Header classes="w-36 mx-auto"/>
-      <Main key={tryAgain} handleTryAgainClick={handleTryAgainClick}/>
-    </div>
+      <div id="main" className="absolute left-1 right-1 text-sm w-full md:w-11/12 lg:w-7/12 pt-2 pb-4 sm:text-md md:text-base mx-auto px-4 rounded-md border border-gray-400 md:border-none">
+        <Header classes="w-36 mx-auto"/>
+        <Main key={tryAgain} handleTryAgainClick={handleTryAgainClick}/>
+      </div>
   )
 }
 
