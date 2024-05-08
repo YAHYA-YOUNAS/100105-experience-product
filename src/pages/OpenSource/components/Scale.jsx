@@ -31,14 +31,16 @@ function Scale() {
                     </span>{' '}
                     to a friend or a colleague?
                 </p>
-                <div className="px-3 flex flex-wrap gap-2 w-fit mx-auto">
+                <div className="px-3 d-grid grid-cols-11 gap-2">
                     {Array.from({ length: 11 }, (_, i) => (
                         <button
                             key={i}
                             type="button"
-                            className="px-3 py-1 text-white bg-green-500 rounded-md"
+                            className="p-1 text-white bg-green-500 rounded-md"
                             onclick={(event) => handleClick(event, i)}
-                        >{i}</button>
+                        >
+                            {i}
+                        </button>
                     ))}
                 </div>
             </div>

@@ -314,11 +314,11 @@ function ActionModal({
                                         to recommend the product to a friend or
                                         colleague?
                                     </p>
-                                    <div className="scaleButtons px-3 flex flex-wrap gap-2 w-fit mx-auto">
+                                    <div className="px-3 d-grid grid-cols-11 gap-2">
                                         {scaleData.map((item, index) => (
                                             <button
                                                 key={index}
-                                                className="px-3 text-white bg-green-500 rounded-md"
+                                                className="px-1 text-white bg-green-500 rounded-md"
                                                 onClick={() =>
                                                     handleScale(item.item[0])
                                                 }
